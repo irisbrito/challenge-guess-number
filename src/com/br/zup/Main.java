@@ -15,26 +15,56 @@ public class Main {
         return new Scanner(System.in);
     }
 
+
     public static void main(String[] args) {
         Random numeroAleatorio = new Random();
         int numero = numeroAleatorio.nextInt(5);
         int pontos = 0;
+        boolean continuar = true;
 
-        System.out.println("Tente adivinhar o número. Sendo de 0 a 5");
-        int resposta = createScanner().nextInt();
+        while(continuar){
+            System.out.println("Tente adivinhar o número. Sendo de 0 a 5");
+            int resposta = createScanner().nextInt();
 
-        if(resposta == numero){
-            System.out.println("Você acertou! E ganhou 10 pontos!");
-        } else if(resposta != numero){
-            if(numero -  resposta == 1){
-                System.out.println("O valor digitado é " + resposta + " e o número sorteado é: " +numero
-                        + " portanto você ganhou 5 pontos");
-                pontos = pontos + 5;
-            } else if (numero - resposta == -1){
-                System.out.println("Você chutou um número abaixo do valor sorteado. Você perdeu o jogo.");
-                System.out.println("Você fez um total de: " + pontos + " pontos");
+            if(resposta == numero){
+                System.out.println("Você acertou! E ganhou 10 pontos!");
+                System.out.println("Seu total de pontos é: " + pontos);
+                System.out.println("Deseja jogar novamente? Digite sim ou sair para finalizar");
+                String resposta2 = createScanner().nextLine();
+                pontos = pontos + 10;
+                if(resposta2.equalsIgnoreCase("sair")){
+                    continuar = false;
+                }
+            } else if(resposta != numero){
+                if(numero -  resposta == 1){
+                    System.out.println("O valor digitado é " + resposta + " e o número sorteado é: " +numero
+                            + " portanto você ganhou 5 pontos");
+                    System.out.println("Deseja jogar novamente? Digite sim ou sair para finalizar");
+                    String resposta2 = createScanner().nextLine();
+                    if(resposta2.equalsIgnoreCase("sair")){
+                        continuar = false;
+                    }
+                    pontos = pontos + 5;
+                } else if (numero - resposta == -1){
+                    System.out.println("Você chutou um número abaixo do valor sorteado. Você perdeu o jogo.");
+                    System.out.println("Você fez um total de: " + pontos + " pontos");
+                    System.out.println("Deseja jogar novamente? Digite sim ou sair para finalizar");
+                    String resposta2 = createScanner().nextLine();
+                    if(resposta2.equalsIgnoreCase("sair")){
+                        continuar = false;
+                    }
+
+                } else {
+                    System.out.println("Você errou!");
+                    System.out.println("Você fez um total de: " + pontos + " pontos");
+                    System.out.println("Deseja jogar novamente? Digite sim ou sair para finalizar");
+                    String resposta2 = createScanner().nextLine();
+                    if(resposta2.equalsIgnoreCase("sair")){
+                        continuar = false;
+                    }
+                }
             }
-        }
+        }  System.out.println("Você fez um total de: " + pontos + " pontos. Volte Sempre!");
 
 
     }
