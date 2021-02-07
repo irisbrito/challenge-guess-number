@@ -26,6 +26,83 @@ public class Main {
 
         while(continuar){
             Random numeroAleatorio = new Random();
+            System.out.println("Escolha um nível de dificuldade:\n 1 para: 0 a 5\n 2 para: 0 a 10");
+            int nivelEscolhido = createScanner().nextInt();
+            if(nivelEscolhido == 1) {
+                int numero = numeroAleatorio.nextInt(5);
+                System.out.println("Tente adivinhar o número.");
+                int resposta = createScanner().nextInt();
+
+                if (resposta == numero) {
+                    System.out.println("Você acertou! E ganhou 10 pontos!");
+                    acertos.add(numero);
+                    pontos = pontos + 10;
+                    System.out.println("Seu total de pontos é: " + pontos);
+                    contador++;
+
+                } else if (resposta != numero) {
+                    if (numero - resposta == 1) {
+                        System.out.println("O valor digitado é " + resposta + " e o número sorteado é: " + numero
+                                + " portanto você ganhou 5 pontos");
+                        pontos = pontos + 5;
+                        erros.add(numero);
+                    } else if (numero - resposta == -1) {
+                        System.out.println("Você chutou um número abaixo do valor sorteado. Você perdeu o jogo.");
+                        System.out.println("Você fez um total de: " + pontos + " pontos");
+                        erros.add(numero);
+                    } else {
+                        System.out.println("Você errou!");
+                        System.out.println("Você fez um total de: " + pontos + " pontos");
+                        erros.add(numero);
+                    }
+
+                }
+                System.out.println("Deseja jogar novamente? Digite sim ou sair para finalizar");
+                String resposta2 = createScanner().nextLine();
+
+                if (resposta2.equalsIgnoreCase("sair")) {
+                    continuar = false;
+                }
+
+
+            } else if(nivelEscolhido == 2) {
+                int numero = numeroAleatorio.nextInt(10);
+                System.out.println("Tente adivinhar o número.");
+                int resposta = createScanner().nextInt();
+
+                if(resposta == numero){
+                    System.out.println("Você acertou! E ganhou 10 pontos!");
+                    acertos.add(numero);
+                    pontos = pontos + 10;
+                    System.out.println("Seu total de pontos é: " + pontos);
+                    contador++;
+
+                } else if(resposta != numero){
+                    if(numero -  resposta == 1){
+                        System.out.println("O valor digitado é " + resposta + " e o número sorteado é: " +numero
+                                + " portanto você ganhou 5 pontos");
+                        pontos = pontos + 5;
+                        erros.add(numero);
+                    } else if (numero - resposta == -1){
+                        System.out.println("Você chutou um número abaixo do valor sorteado. Você perdeu o jogo.");
+                        System.out.println("Você fez um total de: " + pontos + " pontos");
+                        erros.add(numero);
+                    } else {
+                        System.out.println("Você errou!");
+                        System.out.println("Você fez um total de: " + pontos + " pontos");
+                        erros.add(numero);
+                    }
+
+                }
+                System.out.println("Deseja jogar novamente? Digite sim ou sair para finalizar");
+                String resposta2 = createScanner().nextLine();
+
+                if(resposta2.equalsIgnoreCase("sair")){
+                    continuar = false;
+                }
+            }
+
+
             int numero = numeroAleatorio.nextInt(5);
             System.out.println("Tente adivinhar o número.");
             int resposta = createScanner().nextInt();
@@ -56,6 +133,7 @@ public class Main {
             }
             System.out.println("Deseja jogar novamente? Digite sim ou sair para finalizar");
             String resposta2 = createScanner().nextLine();
+
             if(resposta2.equalsIgnoreCase("sair")){
                 continuar = false;
             }
